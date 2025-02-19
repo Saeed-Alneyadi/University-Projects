@@ -1,0 +1,202 @@
+2023-04-18 00:29:03,827: INFO ···············································································
+2023-04-18 00:29:03,828: INFO project3-server starting
+2023-04-18 00:29:03,828: DEBUG Logging to 3461-project3-server.log
+2023-04-18 00:29:03,828: DEBUG Log level set to DEBUG
+2023-04-18 00:29:03,828: DEBUG serverIP is 127.0.0.1
+2023-04-18 00:29:03,829: DEBUG serverPort is 2323
+2023-04-18 00:29:03,831: DEBUG Python version is 3.6 (3.6)
+2023-04-18 00:29:03,831: INFO Opend TCP socket
+2023-04-18 00:29:03,831: INFO Server starting on 127.0.0.1
+2023-04-18 00:29:03,831: INFO Bound to port 2323
+2023-04-18 00:29:03,831: INFO Listening for client connections
+2023-04-18 00:29:05,391: INFO Accepted connection from ('127.0.0.1', 35228)
+2023-04-18 00:29:18,452: INFO Client request received {"request":"REMOVE","parameter":"item"}
+2023-04-18 00:29:18,453: INFO Processing client request REMOVE
+2023-04-18 00:29:18,453: WARNING No list to remove item from
+2023-04-18 00:29:18,453: INFO Sending server response {"response":"ERROR","parameter":"No list to remove item from"}
+2023-04-18 00:29:22,105: INFO Client request received {"request":"CREATE","parameter":"todo"}
+2023-04-18 00:29:22,105: INFO Processing client request CREATE
+2023-04-18 00:29:22,105: DEBUG List todo created
+2023-04-18 00:29:22,106: INFO Sending server response {"response":"CREATE","parameter":"
+Created list todo
+"}
+2023-04-18 00:29:31,017: INFO Client request received {"request":"CREATE","parameter":"another"}
+2023-04-18 00:29:31,018: INFO Processing client request CREATE
+2023-04-18 00:29:31,018: DEBUG List todo already created
+2023-04-18 00:29:31,019: INFO Sending server response {"response":"WARNING","parameter":"List todo already created"}
+2023-04-18 00:29:40,976: INFO Client request received {"request":"SHOW","parameter":""}
+2023-04-18 00:29:40,977: INFO Processing client request SHOW
+2023-04-18 00:29:40,977: DEBUG List empty
+2023-04-18 00:29:40,977: INFO Sending server response {"response":"WARNING","parameter":"List empty"}
+2023-04-18 00:29:47,797: INFO Client request received {"request":"ADD","parameter":"study for final"}
+2023-04-18 00:29:47,798: INFO Processing client request ADD
+2023-04-18 00:29:47,798: DEBUG Item study for final added
+2023-04-18 00:29:47,798: INFO Sending server response {"response":"ADD","parameter":"
+Item study for final added
+"}
+2023-04-18 00:29:51,992: INFO Client request received {"request":"ADD","parameter":"take final"}
+2023-04-18 00:29:51,996: INFO Processing client request ADD
+2023-04-18 00:29:51,996: DEBUG Item take final added
+2023-04-18 00:29:51,998: INFO Sending server response {"response":"ADD","parameter":"
+Item take final added
+"}
+2023-04-18 00:30:00,459: INFO Client request received {"request":"ADD","parameter":"party"}
+2023-04-18 00:30:00,461: INFO Processing client request ADD
+2023-04-18 00:30:00,461: DEBUG Item party added
+2023-04-18 00:30:00,461: INFO Sending server response {"response":"ADD","parameter":"
+Item party added
+"}
+2023-04-18 00:30:05,097: INFO Client request received {"request":"ADD","parameter":"get grades"}
+2023-04-18 00:30:05,098: INFO Processing client request ADD
+2023-04-18 00:30:05,098: DEBUG Item get grades added
+2023-04-18 00:30:05,098: INFO Sending server response {"response":"ADD","parameter":"
+Item get grades added
+"}
+2023-04-18 00:30:08,240: INFO Client request received {"request":"SHOW","parameter":""}
+2023-04-18 00:30:08,240: INFO Processing client request SHOW
+2023-04-18 00:30:08,240: DEBUG List items gathered
+2023-04-18 00:30:08,240: INFO Sending server response {"response":"SHOW","parameter":"study for final,take final,party,get grades"}
+2023-04-18 00:30:13,492: INFO Client request received {"request":"REMOVE","parameter":"party"}
+2023-04-18 00:30:13,493: INFO Processing client request REMOVE
+2023-04-18 00:30:13,493: DEBUG List item party removed
+2023-04-18 00:30:13,493: INFO Sending server response {"response":"REMOVE","parameter":"
+Item party removed
+"}
+2023-04-18 00:30:15,583: INFO Client request received {"request":"SHOW","parameter":""}
+2023-04-18 00:30:15,584: INFO Processing client request SHOW
+2023-04-18 00:30:15,584: DEBUG List items gathered
+2023-04-18 00:30:15,584: INFO Sending server response {"response":"SHOW","parameter":"study for final,take final,get grades"}
+2023-04-18 00:30:23,973: INFO Client request received {"request":"ADD","parameter":"resolve to study harder"}
+2023-04-18 00:30:23,974: INFO Processing client request ADD
+2023-04-18 00:30:23,974: DEBUG Item resolve to study harder added
+2023-04-18 00:30:23,974: INFO Sending server response {"response":"ADD","parameter":"
+Item resolve to study harder added
+"}
+2023-04-18 00:30:30,792: INFO Client request received {"request":"REMOVE","parameter":"study for final"}
+2023-04-18 00:30:30,793: INFO Processing client request REMOVE
+2023-04-18 00:30:30,793: DEBUG List item study for final removed
+2023-04-18 00:30:30,793: INFO Sending server response {"response":"REMOVE","parameter":"
+Item study for final removed
+"}
+2023-04-18 00:30:34,456: INFO Client request received {"request":"SHOW","parameter":""}
+2023-04-18 00:30:34,457: INFO Processing client request SHOW
+2023-04-18 00:30:34,457: DEBUG List items gathered
+2023-04-18 00:30:34,457: INFO Sending server response {"response":"SHOW","parameter":"take final,get grades,resolve to study harder"}
+2023-04-18 00:30:36,119: INFO Client request received {"request":"QUIT","parameter":""}
+2023-04-18 00:30:36,119: INFO Processing client request QUIT
+2023-04-18 00:30:36,122: INFO Sending server response {"request":"QUIT","parameter":"Server shutting down"}
+2023-04-18 00:30:36,122: INFO Server Shutting down ...
+2023-04-18 00:31:36,918: INFO ···············································································
+2023-04-18 00:31:36,920: INFO project3-server starting
+2023-04-18 00:31:36,920: DEBUG Logging to 3461-project3-server.log
+2023-04-18 00:31:36,920: DEBUG Log level set to DEBUG
+2023-04-18 00:31:36,920: DEBUG serverIP is 127.0.0.1
+2023-04-18 00:31:36,920: DEBUG serverPort is 2323
+2023-04-18 00:31:36,921: DEBUG Python version is 3.6 (3.6)
+2023-04-18 00:31:36,922: INFO Opend TCP socket
+2023-04-18 00:31:36,924: INFO Server starting on 127.0.0.1
+2023-04-18 00:31:36,924: INFO Bound to port 2323
+2023-04-18 00:31:36,924: INFO Listening for client connections
+2023-04-18 00:31:42,156: INFO Accepted connection from ('127.0.0.1', 35240)
+2023-04-18 00:31:47,332: INFO Client request received {"request":"CREATE","parameter":"mylist"}
+2023-04-18 00:31:47,333: INFO Processing client request CREATE
+2023-04-18 00:31:47,333: DEBUG List todo already created
+2023-04-18 00:31:47,335: INFO Sending server response {"response":"WARNING","parameter":"List todo already created"}
+2023-04-18 00:31:49,959: INFO Client request received {"request":"SHOW","parameter":""}
+2023-04-18 00:31:49,959: INFO Processing client request SHOW
+2023-04-18 00:31:49,959: DEBUG List items gathered
+2023-04-18 00:31:49,959: INFO Sending server response {"response":"SHOW","parameter":"take final,get grades,resolve to study harder"}
+2023-04-18 00:31:57,310: INFO Client request received {"request":"REMOVE","parameter":"take final"}
+2023-04-18 00:31:57,311: INFO Processing client request REMOVE
+2023-04-18 00:31:57,311: DEBUG List item take final removed
+2023-04-18 00:31:57,311: INFO Sending server response {"response":"REMOVE","parameter":"
+Item take final removed
+"}
+2023-04-18 00:32:00,439: INFO Client request received {"request":"SHOW","parameter":""}
+2023-04-18 00:32:00,439: INFO Processing client request SHOW
+2023-04-18 00:32:00,439: DEBUG List items gathered
+2023-04-18 00:32:00,440: INFO Sending server response {"response":"SHOW","parameter":"get grades,resolve to study harder"}
+2023-04-18 00:32:17,216: INFO Client request received {"request":"DELETE","parameter":"mylist"}
+2023-04-18 00:32:17,216: INFO Processing client request DELETE
+2023-04-18 00:32:17,217: DEBUG List mylist does not exist
+2023-04-18 00:32:17,217: INFO Sending server response {"response":"WARNING","parameter":"List mylist does not exist"}
+2023-04-18 00:32:24,132: INFO Client request received {"request":"DELETE","parameter":"todo"}
+2023-04-18 00:32:24,133: INFO Processing client request DELETE
+2023-04-18 00:32:24,133: DEBUG List todo deleted
+2023-04-18 00:32:24,134: INFO Sending server response {"response":"DELETE","parameter":"
+List todo deleted
+"}
+2023-04-18 00:32:40,808: INFO Client request received {"request":"ADD","parameter":"item"}
+2023-04-18 00:32:40,809: INFO Processing client request ADD
+2023-04-18 00:32:40,809: WARNING No list to add item to
+2023-04-18 00:32:40,810: INFO Sending server response {"response":"ERROR","parameter":"No list to add item to"}
+2023-04-18 00:32:54,440: INFO Client request received {"request":"CREATE","parameter":"StoryOutline"}
+2023-04-18 00:32:54,442: INFO Processing client request CREATE
+2023-04-18 00:32:54,442: DEBUG List StoryOutline created
+2023-04-18 00:32:54,442: INFO Sending server response {"response":"CREATE","parameter":"
+Created list StoryOutline
+"}
+2023-04-18 00:33:05,976: INFO Client request received {"request":"ADD","parameter":"Boy meets girl"}
+2023-04-18 00:33:05,976: INFO Processing client request ADD
+2023-04-18 00:33:05,977: DEBUG Item Boy meets girl added
+2023-04-18 00:33:05,978: INFO Sending server response {"response":"ADD","parameter":"
+Item Boy meets girl added
+"}
+2023-04-18 00:33:14,365: INFO Client request received {"request":"ADD","parameter":"Boy and girl fall in love"}
+2023-04-18 00:33:14,366: INFO Processing client request ADD
+2023-04-18 00:33:14,366: DEBUG Item Boy and girl fall in love added
+2023-04-18 00:33:14,366: INFO Sending server response {"response":"ADD","parameter":"
+Item Boy and girl fall in love added
+"}
+2023-04-18 00:33:26,944: INFO Client request received {"request":"ADD","parameter":"Earth explodes"}
+2023-04-18 00:33:26,945: INFO Processing client request ADD
+2023-04-18 00:33:26,946: DEBUG Item Earth explodes added
+2023-04-18 00:33:26,946: INFO Sending server response {"response":"ADD","parameter":"
+Item Earth explodes added
+"}
+2023-04-18 00:33:31,143: INFO Client request received {"request":"SHOW","parameter":""}
+2023-04-18 00:33:31,145: INFO Processing client request SHOW
+2023-04-18 00:33:31,145: DEBUG List items gathered
+2023-04-18 00:33:31,146: INFO Sending server response {"response":"SHOW","parameter":"Boy meets girl,Boy and girl fall in love,Earth explodes"}
+2023-04-18 00:33:37,956: INFO Client request received {"request":"ADD","parameter":"The end"}
+2023-04-18 00:33:37,957: INFO Processing client request ADD
+2023-04-18 00:33:37,957: DEBUG Item The end added
+2023-04-18 00:33:37,958: INFO Sending server response {"response":"ADD","parameter":"
+Item The end added
+"}
+2023-04-18 00:33:40,581: INFO Client request received {"request":"SHOW","parameter":""}
+2023-04-18 00:33:40,581: INFO Processing client request SHOW
+2023-04-18 00:33:40,581: DEBUG List items gathered
+2023-04-18 00:33:40,581: INFO Sending server response {"response":"SHOW","parameter":"Boy meets girl,Boy and girl fall in love,Earth explodes,The end"}
+2023-04-18 00:33:50,540: INFO Client request received {"request":"REMOVE","parameter":"earth explodes"}
+2023-04-18 00:33:50,541: INFO Processing client request REMOVE
+2023-04-18 00:33:50,541: DEBUG List item earth explodes not in the list
+2023-04-18 00:33:50,541: INFO Sending server response {"response":"WARNING","parameter":"Item earth explodes not in the list"}
+2023-04-18 00:33:52,116: INFO Client request received {"request":"SHOW","parameter":""}
+2023-04-18 00:33:52,116: INFO Processing client request SHOW
+2023-04-18 00:33:52,116: DEBUG List items gathered
+2023-04-18 00:33:52,116: INFO Sending server response {"response":"SHOW","parameter":"Boy meets girl,Boy and girl fall in love,Earth explodes,The end"}
+2023-04-18 00:34:02,600: INFO Client request received {"request":"REMOVE","parameter":"Earth explodes"}
+2023-04-18 00:34:02,602: INFO Processing client request REMOVE
+2023-04-18 00:34:02,602: DEBUG List item Earth explodes removed
+2023-04-18 00:34:02,602: INFO Sending server response {"response":"REMOVE","parameter":"
+Item Earth explodes removed
+"}
+2023-04-18 00:34:06,270: INFO Client request received {"request":"SHOW","parameter":""}
+2023-04-18 00:34:06,272: INFO Processing client request SHOW
+2023-04-18 00:34:06,272: DEBUG List items gathered
+2023-04-18 00:34:06,272: INFO Sending server response {"response":"SHOW","parameter":"Boy meets girl,Boy and girl fall in love,The end"}
+2023-04-18 00:34:16,756: INFO Client request received {"request":"DELETE","parameter":"storyoutline"}
+2023-04-18 00:34:16,756: INFO Processing client request DELETE
+2023-04-18 00:34:16,756: DEBUG List storyoutline does not exist
+2023-04-18 00:34:16,757: INFO Sending server response {"response":"WARNING","parameter":"List storyoutline does not exist"}
+2023-04-18 00:34:25,143: INFO Client request received {"request":"DELETE","parameter":"StoryOutline"}
+2023-04-18 00:34:25,143: INFO Processing client request DELETE
+2023-04-18 00:34:25,143: DEBUG List StoryOutline deleted
+2023-04-18 00:34:25,143: INFO Sending server response {"response":"DELETE","parameter":"
+List StoryOutline deleted
+"}
+2023-04-18 00:34:26,715: INFO Client request received {"request":"QUIT","parameter":""}
+2023-04-18 00:34:26,715: INFO Processing client request QUIT
+2023-04-18 00:34:27,110: INFO Sending server response {"request":"QUIT","parameter":"Server shutting down"}
+2023-04-18 00:34:27,110: INFO Server Shutting down ...

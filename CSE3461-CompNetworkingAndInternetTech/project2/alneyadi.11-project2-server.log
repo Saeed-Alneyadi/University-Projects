@@ -1,0 +1,40 @@
+2023-03-03 23:48:53,956: INFO ···············································································
+2023-03-03 23:48:53,957: INFO project2-server starting
+2023-03-03 23:48:53,957: DEBUG Logging to 3461-project2-server.log
+2023-03-03 23:48:53,957: DEBUG Log level set to DEBUG
+2023-03-03 23:48:53,958: DEBUG serverIP is 127.0.0.1
+2023-03-03 23:48:53,958: DEBUG serverPort is 2323
+2023-03-03 23:48:53,959: INFO Opend TCP socket
+2023-03-03 23:48:53,959: INFO Server starting on 127.0.0.1
+2023-03-03 23:48:53,959: INFO Bound to port 2323
+2023-03-03 23:48:53,959: INFO Listening for client connections
+2023-03-03 23:48:56,509: INFO Accepted connection from ('127.0.0.1', 45002)
+2023-03-03 23:49:05,617: INFO Client request received {"request":"SEND","parameter":"this test string"}
+2023-03-03 23:49:05,617: INFO Sending server response {"request":"SEND","parameter":"this test string (1677905345)"}
+2023-03-03 23:49:13,130: INFO Client request received {"request":"ADD","parameter":"files and LISTS"}
+2023-03-03 23:49:13,130: INFO Sending server response {"request":"ADD","parameter":"files and LISTS (1677905353)"}
+2023-03-03 23:49:24,213: INFO Client request received {"request":"SUB","parameter":"this ELEMENT for that parameter"}
+2023-03-03 23:49:24,215: INFO Sending server response {"request":"SUB","parameter":"this ELEMENT for that  (1677905364)"}
+2023-03-03 23:49:38,122: INFO Client request received {"request":"DELETE","parameter":"the second line"}
+2023-03-03 23:49:38,123: INFO Sending server response {"request":"DELETE","parameter":"the second line (1677905378)"}
+2023-03-03 23:49:52,389: INFO Client request received {"request":"WRITE","parameter":"this String to file a"}
+2023-03-03 23:49:52,390: INFO Sending server response {"request":"WRITE","parameter":"this String to file a (1677905392)"}
+2023-03-03 23:50:01,910: INFO Client request received {"request":"DIVIDE","parameter":"this in half"}
+2023-03-03 23:50:01,911: INFO Sending server response {"request":"DIVIDE","parameter":"this in half (1677905401)"}
+2023-03-03 23:50:08,850: INFO Client request received {"request":"LIST","parameter":"all files"}
+2023-03-03 23:50:08,851: INFO Sending server response {"request":"LIST","parameter":"all files (1677905408)"}
+2023-03-03 23:50:22,193: INFO Client request received {"request":"REMOVE","parameter":"the third line"}
+2023-03-03 23:50:22,194: INFO Sending server response {"request":"REMOVE","parameter":"the third line (1677905422)"}
+2023-03-03 23:50:33,402: INFO Client request received {"request":"COUNT","parameter":"from 1 to 10"}
+2023-03-03 23:50:33,402: INFO Sending server response {"request":"COUNT","parameter":"from 1 to 10 (1677905433)"}
+2023-03-03 23:50:36,481: INFO Client request received {"request":"X","parameter":""}
+2023-03-03 23:50:36,481: INFO Sending server response {"request":"X","parameter":" (1677905436)"}
+2023-03-03 23:50:51,689: INFO Client request received {"request":"MULTIPLY","parameter":"is a Math Function"}
+2023-03-03 23:50:51,690: INFO Sending server response {"request":"MULTIPLY","parameter":"is a Math Function (1677905451)"}
+2023-03-03 23:50:59,701: INFO Client request received {"request":"SUBTRACT","parameter":"is also"}
+2023-03-03 23:50:59,702: INFO Sending server response {"request":"SUBTRACT","parameter":"is also (1677905459)"}
+2023-03-03 23:51:17,525: INFO Client request received {"request":"THE","parameter":"next string will be a quit"}
+2023-03-03 23:51:17,525: INFO Sending server response {"request":"THE","parameter":"next string will be a quit (1677905477)"}
+2023-03-03 23:51:24,283: INFO Client request received {"request":"QUIT","parameter":""}
+2023-03-03 23:51:24,284: INFO Sending server response {"request":"QUIT","parameter":"Server shutting down"}
+2023-03-03 23:51:24,284: INFO Server Shutting down ...

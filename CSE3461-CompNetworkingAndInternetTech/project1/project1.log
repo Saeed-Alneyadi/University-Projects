@@ -1,0 +1,52 @@
+2023-02-16 20:24:54,556: INFO project starting
+2023-02-16 20:24:54,556: INFO Logging to project1.log
+2023-02-16 20:24:54,556: INFO Log level set to INFO
+2023-02-16 20:24:54,559: INFO Configuration file contents:
+2023-02-16 20:24:54,559: INFO   Section: osu
+2023-02-16 20:24:54,559: INFO     option university = The Ohio State University
+2023-02-16 20:24:54,559: INFO     option college = College of Engineering
+2023-02-16 20:24:54,559: INFO     option department = Department of Computer Science and Engineering
+2023-02-16 20:24:54,559: INFO     option class = CSE3461
+2023-02-16 20:24:54,559: INFO   Section: server
+2023-02-16 20:24:54,559: INFO     option serverhost = 10.134.215.76
+2023-02-16 20:24:54,559: INFO     option serverport = 5782
+2023-02-16 20:24:54,559: INFO   Section: logger
+2023-02-16 20:24:54,559: INFO     option loghost = 10.1.154.241
+2023-02-16 20:24:54,560: INFO     option loglevel = info
+2023-02-16 20:24:54,560: INFO   Section: db
+2023-02-16 20:24:54,560: INFO     option host = 10.129.2.170
+2023-02-16 20:24:54,560: INFO     option port = 3232
+2023-02-16 20:24:54,560: INFO     option commitinterval = 60
+2023-02-16 20:24:54,560: INFO   Section: bitbucket.org
+2023-02-16 20:24:54,560: INFO     option user = hg
+2023-02-16 20:24:54,560: INFO   Section: topsecret.server.com
+2023-02-16 20:24:54,560: INFO     option port = 50022
+2023-02-16 20:24:54,560: INFO     option forwardx11 = no
+2023-02-16 20:24:54,560: INFO   Section: http
+2023-02-16 20:24:54,560: INFO     option port = 8080
+2023-02-16 20:24:54,560: INFO     option username = httpuser
+2023-02-16 20:24:54,560: INFO   Section: https
+2023-02-16 20:24:54,560: INFO     option port = 8043
+2023-02-16 20:24:54,561: INFO     option username = httpsuser
+2023-02-16 20:24:54,561: INFO   Section: FTP
+2023-02-16 20:24:54,561: INFO     option port = 8043
+2023-02-16 20:24:54,561: INFO     option username = ftpuser
+2023-02-16 20:24:54,561: INFO   Section: database
+2023-02-16 20:24:54,561: INFO     option driverclass = com.mysql.jdbc.Driver
+2023-02-16 20:24:54,561: INFO     option dbname = mydatabase
+2023-02-16 20:24:54,561: INFO     option port = 3306
+2023-02-16 20:24:54,561: INFO     option username = user
+2023-02-16 20:24:54,561: INFO     option password = password
+2023-02-16 20:24:58,987: INFO Entered string   = the quick brown fox
+2023-02-16 20:24:58,987: INFO Processed string = THE quick brown fox
+2023-02-16 20:25:03,291: INFO Entered string   = count to 5 ... 12345
+2023-02-16 20:25:03,291: INFO Processed string = COUNT to 5 ... 12345
+2023-02-16 20:25:06,691: INFO Entered string   = 3461 is Networking Fundamentals
+2023-02-16 20:25:06,691: INFO Processed string = 3461 is Networking Fundamentals
+2023-02-16 20:25:10,990: INFO Entered string   = Go Bucks!
+2023-02-16 20:25:10,991: INFO Processed string = GO Bucks!
+2023-02-16 20:25:14,674: INFO Entered string   = The next string will be a quit
+2023-02-16 20:25:14,675: INFO Processed string = THE next string will be a quit
+2023-02-16 20:25:17,843: INFO Entered string   = quit
+2023-02-16 20:25:17,843: INFO Processed string = QUIT
+2023-02-16 20:25:17,843: INFO Shutting down ...

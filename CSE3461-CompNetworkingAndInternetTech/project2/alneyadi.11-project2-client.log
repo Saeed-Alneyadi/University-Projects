@@ -1,0 +1,53 @@
+2023-03-03 23:48:56,507: INFO ···············································································
+2023-03-03 23:48:56,507: INFO project2-client starting
+2023-03-03 23:48:56,508: DEBUG Logging to 3461-project2-client.log
+2023-03-03 23:48:56,508: DEBUG Log level set to DEBUG
+2023-03-03 23:48:56,509: DEBUG serverIP is 127.0.0.1
+2023-03-03 23:48:56,509: DEBUG serverPort is 2323
+2023-03-03 23:48:56,509: INFO Client socket object created
+2023-03-03 23:48:56,510: INFO Connected to Project 2 Server at ('127.0.0.1', 2323)
+2023-03-03 23:49:05,615: INFO Command received: send this test string
+2023-03-03 23:49:05,616: INFO Sending client request: {"request":"SEND","parameter":"this test string"}
+2023-03-03 23:49:05,618: INFO Server response recieved {"request":"SEND","parameter":"this test string (1677905345)"}
+2023-03-03 23:49:13,128: INFO Command received: add files and LISTS
+2023-03-03 23:49:13,129: INFO Sending client request: {"request":"ADD","parameter":"files and LISTS"}
+2023-03-03 23:49:13,131: INFO Server response recieved {"request":"ADD","parameter":"files and LISTS (1677905353)"}
+2023-03-03 23:49:24,212: INFO Command received: sub this ELEMENT for that parameter
+2023-03-03 23:49:24,213: INFO Sending client request: {"request":"SUB","parameter":"this ELEMENT for that parameter"}
+2023-03-03 23:49:24,215: INFO Server response recieved {"request":"SUB","parameter":"this ELEMENT for that  (1677905364)"}
+2023-03-03 23:49:38,121: INFO Command received: deletE the second line
+2023-03-03 23:49:38,122: INFO Sending client request: {"request":"DELETE","parameter":"the second line"}
+2023-03-03 23:49:38,123: INFO Server response recieved {"request":"DELETE","parameter":"the second line (1677905378)"}
+2023-03-03 23:49:52,388: INFO Command received: write this String to file a
+2023-03-03 23:49:52,389: INFO Sending client request: {"request":"WRITE","parameter":"this String to file a"}
+2023-03-03 23:49:52,390: INFO Server response recieved {"request":"WRITE","parameter":"this String to file a (1677905392)"}
+2023-03-03 23:50:01,908: INFO Command received: divide this in half
+2023-03-03 23:50:01,909: INFO Sending client request: {"request":"DIVIDE","parameter":"this in half"}
+2023-03-03 23:50:01,911: INFO Server response recieved {"request":"DIVIDE","parameter":"this in half (1677905401)"}
+2023-03-03 23:50:08,849: INFO Command received: list all files
+2023-03-03 23:50:08,850: INFO Sending client request: {"request":"LIST","parameter":"all files"}
+2023-03-03 23:50:08,851: INFO Server response recieved {"request":"LIST","parameter":"all files (1677905408)"}
+2023-03-03 23:50:22,192: INFO Command received: Remove the third line
+2023-03-03 23:50:22,193: INFO Sending client request: {"request":"REMOVE","parameter":"the third line"}
+2023-03-03 23:50:22,194: INFO Server response recieved {"request":"REMOVE","parameter":"the third line (1677905422)"}
+2023-03-03 23:50:33,400: INFO Command received: Count from 1 to 10
+2023-03-03 23:50:33,401: INFO Sending client request: {"request":"COUNT","parameter":"from 1 to 10"}
+2023-03-03 23:50:33,403: INFO Server response recieved {"request":"COUNT","parameter":"from 1 to 10 (1677905433)"}
+2023-03-03 23:50:36,480: INFO Command received: x
+2023-03-03 23:50:36,480: INFO Sending client request: {"request":"X","parameter":""}
+2023-03-03 23:50:36,481: INFO Server response recieved {"request":"X","parameter":" (1677905436)"}
+2023-03-03 23:50:51,688: INFO Command received: multiply is a Math Function
+2023-03-03 23:50:51,689: INFO Sending client request: {"request":"MULTIPLY","parameter":"is a Math Function"}
+2023-03-03 23:50:51,690: INFO Server response recieved {"request":"MULTIPLY","parameter":"is a Math Function (1677905451)"}
+2023-03-03 23:50:59,700: INFO Command received: Subtract is also
+2023-03-03 23:50:59,701: INFO Sending client request: {"request":"SUBTRACT","parameter":"is also"}
+2023-03-03 23:50:59,702: INFO Server response recieved {"request":"SUBTRACT","parameter":"is also (1677905459)"}
+2023-03-03 23:51:01,480: INFO Command received: 
+2023-03-03 23:51:01,480: INFO No command entered ...
+2023-03-03 23:51:17,523: INFO Command received: The next string will be a quit
+2023-03-03 23:51:17,524: INFO Sending client request: {"request":"THE","parameter":"next string will be a quit"}
+2023-03-03 23:51:17,525: INFO Server response recieved {"request":"THE","parameter":"next string will be a quit (1677905477)"}
+2023-03-03 23:51:24,280: INFO Command received: qUIt
+2023-03-03 23:51:24,282: INFO Sending client request: {"request":"QUIT","parameter":""}
+2023-03-03 23:51:24,284: INFO Server response recieved {"request":"QUIT","parameter":"Server shutting down"}
+2023-03-03 23:51:24,284: INFO Client Shutting down ...
