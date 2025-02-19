@@ -1,0 +1,25 @@
+PROGRAM ActionsProgram IS
+
+  INSTRUCTION run+ IS
+     move
+     move
+  END run+
+  
+  INSTRUCTION turnAroundL IS
+    turnleft
+    turnleft
+  END turnAroundL
+
+  INSTRUCTION turnAroundR IS
+    turnright
+    turnright
+  END turnAroundR
+
+BEGIN
+  WHILE true DO
+    run+
+    turnAroundL
+    run+
+    turnAroundR
+  END WHILE
+END ActionsProgram

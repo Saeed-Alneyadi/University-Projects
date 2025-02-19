@@ -1,0 +1,32 @@
+PROGRAM InfectorProgram IS
+
+  INSTRUCTION infectL IS
+     turnleft
+     infect
+     turnright
+  END infectL
+
+  INSTRUCTION infectR IS
+     turnright
+     infect
+     turnleft
+  END infectR
+
+  INSTRUCTION turnAround IS
+     turnright
+     turnright
+  END turnAround
+
+BEGIN
+  WHILE true DO
+    IF next-is-empty THEN
+        move
+    ELSE
+        turnAround
+        move
+        turnleft
+    END IF
+    infectL
+    infectR
+  END WHILE
+END InfectorProgram
