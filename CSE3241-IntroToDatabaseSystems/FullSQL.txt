@@ -1,0 +1,712 @@
+DROP TABLE if EXISTS Person;
+DROP TABLE if EXISTS Employee;
+DROP TABLE if EXISTS MedicalEmployee;
+DROP TABLE if EXISTS NonMedicalEmployee;
+DROP TABLE if EXISTS Patient;
+DROP TABLE if EXISTS EmergencyContact;
+DROP TABLE if EXISTS Address;
+DROP TABLE if EXISTS Person_Address_Join;
+DROP TABLE if EXISTS Office;
+DROP TABLE if EXISTS License;
+DROP TABLE if EXISTS MedicalEmployee_License_Join;
+DROP TABLE if EXISTS Payments;
+DROP TABLE if EXISTS PaymentMethod;
+DROP TABLE if EXISTS Cash;
+DROP TABLE if EXISTS Check_;
+DROP TABLE if EXISTS CreditCard;
+DROP TABLE if EXISTS Patient_CreditCard_Join;
+DROP TABLE if EXISTS Allergies;
+DROP TABLE if EXISTS Patient_Allergies_Join;
+DROP TABLE if EXISTS Medications;
+DROP TABLE if EXISTS Patient_Medications_Join;
+DROP TABLE if EXISTS MedicalConditions;
+DROP TABLE if EXISTS Patient_MedicalConditions_Join;
+DROP TABLE if EXISTS AcceptedInsurance;
+DROP TABLE if EXISTS Appointments;
+DROP TABLE if EXISTS Employee_Appointment_Join;
+DROP TABLE if EXISTS Procedures;
+DROP TABLE if EXISTS Procedures_MedicalEmployee_Join;
+DROP TABLE if EXISTS Procedures_AcceptedInsurance_Join;
+DROP TABLE if EXISTS Procedures_Appointments_Join;
+DROP TABLE if EXISTS Invoice;
+DROP TABLE if EXISTS Invoice_AcceptedInsurance_Join;
+DROP TABLE if EXISTS Procedures_Invoice_Join;
+
+create table Person (
+  ID INTEGER PRIMARY key,
+  Fname varchar(25) NOT null,
+  Lname varchar(25) NOT null
+);
+
+CREATE TABLE Employee (
+  PersonID INTEGER PRIMARY key,
+  Salary INT not NULL,
+  Degree Varchar(10) not null,
+  College Varchar(25),
+  BadeNum INT not null,
+  OID INTEGER not null,
+  FOREIGN KEY(PersonID) REFERENCES Person(ID),
+  FOREIGN KEY(OID) REFERENCES Office(OID)
+);
+
+CREATE table MedicalEmployee (
+  PersonID INTEGER PRIMARY key,
+  Training varchar(25) not null,
+  Position varchar(25) not null,
+  FOREIGN KEY(PersonID) REFERENCES Person(ID)
+);
+
+CREATE table NonMedicalEmployee (
+  PersonID INTEGER PRIMARY key,
+  Type varchar(25) not null,
+  FOREIGN KEY(PersonID) REFERENCES Person(ID)
+);
+
+CREATE table Patient (
+  PersonID INTEGER PRIMARY key,
+  LastXRayDate Date,
+  Gender Varchar(1) not null,
+  Race Varchar(25),
+  Age INTEGER not null,
+  HIPPASigned BOOlean NOt null,
+  EID INTEGER not null,
+  IPID INTEGER not null,
+  FOREIGN KEY(PersonID) REFERENCES Person(ID),
+  FOREIGN KEY(EID) REFERENCES EmergencyContact(PersonID),
+  FOREIGN KEY(IPID) REFERENCES AcceptedInsurance(IPID)
+);
+
+CREATE table EmergencyContact (
+  PersonID INTEGER PRIMARY key,
+  Relation varchar(10) not null,
+  FOREIGN KEY(PersonID) REFERENCES Person(ID)
+);
+
+CREATE TABLE Address (
+  StreetAddress Varchar(25) PRIMARY key,
+  City Varchar(10) not null,
+  State varchar(2) not null,
+  Zip INTEGER not null,
+  Country VARchar(25) not null
+);
+
+CREATE TABLE Person_Address_Join (
+  PersonID INTEGER not null,
+  StreetAddress Varchar(25) not null,
+  PRIMARY key (PersonID, StreetAddress),
+  FOREIGN KEY(PersonID) REFERENCES Person(ID),
+  FOREIGN KEY(StreetAddress) REFERENCES Address(StreetAddress)
+);
+
+CREATE TABLE Office (
+  OID InTEGER PRIMARY KEY,
+  OfficeName Varchar(10),
+  StreetAddress VARCHAR(25) NOT null
+);
+
+create table License (
+  LicenseID INTEGER PRIMARY key,
+  LicenseName varchar(25) NOT null
+);
+
+CREATE TABLE MedicalEmployee_License_Join (
+  PersonID INTEGER not null,
+  LicenseID Varchar(25) not null,
+  PRIMARY key (PersonID, LicenseID),
+  FOREIGN KEY(PersonID) REFERENCES MedicalEmployee(PersonID),
+  FOREIGN KEY(LicenseID) REFERENCES License(LicenseID)
+);
+
+CREATE TABLE Payments (
+  PID InTEGER PRIMARY KEY,
+  DatePaid Date not null,
+  PayeeID Integer NOT null,
+  FOREIGN KEY(PayeeID) REFERENCES Patient(PersonID)
+);
+
+CREATE TABLE PaymentMethod (
+  PMID InTEGER PRIMARY KEY,
+  PID Integer NOT null,
+  FOREIGN KEY(PID) REFERENCES Payments(PID)
+);
+
+create table Cash (
+  PMID Integer PRIMARY key,
+  CashAmount INTEGER not null,
+  FOREIGN KEY(PMID) REFERENCES PaymentMethod(PMID)
+);
+
+create table Check_ (
+  PMID Integer PRIMARY key,
+  CheckAmount INTEGER not null,
+  CheckDate Date not null,
+  CheckRecipient VarChar(25) not null,
+  FOREIGN KEY(PMID) REFERENCES PaymentMethod(PMID)
+);
+
+create table CreditCard (
+  CardNumber VarChar(20) primary key,
+  PMID Integer not null,
+  CVV INTEGER not null,
+  ExpireDate Date not null,
+  CardHolderName Varchar(25) not null,
+  FOREIGN KEY(PMID) REFERENCES PaymentMethod(PMID)
+);
+
+CREATE TABLE Patient_CreditCard_Join (
+  PersonID INTEGER not null,
+  CardNumber Varchar(20) not null,
+  PRIMARY key (PersonID, CardNumber),
+  FOREIGN KEY(PersonID) REFERENCES Patient(PersonID),
+  FOREIGN KEY(CardNumber) REFERENCES CreditCard(CardNumber)
+);
+
+create table Allergies (
+  AID INTEGER PRIMARY key,
+  Allergy varchar(25) NOT null
+);
+
+CREATE TABLE Patient_Allergies_Join (
+  PersonID INTEGER not null,
+  AID INTEGER not null,
+  PRIMARY key (PersonID, AID),
+  FOREIGN KEY(PersonID) REFERENCES Patient(PersonID),
+  FOREIGN KEY(AID) REFERENCES Allergies(AID)
+);
+
+create table Medications (
+  MID INTEGER PRIMARY key,
+  Medication varchar(10) NOT null
+);
+
+CREATE TABLE Patient_Medications_Join (
+  PersonID INTEGER not null,
+  MID INTEGER not null,
+  PRIMARY key (PersonID, MID),
+  FOREIGN KEY(PersonID) REFERENCES Patient(PersonID),
+  FOREIGN KEY(MID) REFERENCES Medications(MID)
+);
+
+create table MedicalConditions (
+  CID INTEGER PRIMARY key,
+  Condition varchar(25) NOT null
+);
+
+CREATE TABLE Patient_MedicalConditions_Join (
+  PersonID INTEGER not null,
+  CID INTEGER not null,
+  PRIMARY key (PersonID, CID),
+  FOREIGN KEY(PersonID) REFERENCES Patient(PersonID),
+  FOREIGN KEY(CID) REFERENCES MedicalConditions(CID)
+);
+
+create table AcceptedInsurance (
+  IPID INTEGER PRIMARY key,
+  Name varchar(10) not null,
+  Type varchar(10) not null,
+  Rate INTEGER not null
+);
+
+create table Appointments (
+  AppointmentID INTEGER PRIMARY key,
+  Date_ Date not null,
+  Cancelled boolean default FALSE,
+  PatientID INTEGER not null,
+  IID INTEGER not null,
+  FOREIGN KEY(PatientID) REFERENCES Patient(PersonID),
+  FOREIGN KEY(IID) REFERENCES Invoice(IID)
+);
+
+CREATE TABLE Employee_Appointment_Join (
+  EmployeeID INTEGER not null,
+  AppointmentID INTEGER not null,
+  PRIMARY key (EmployeeID, AppointmentID),
+  FOREIGN KEY(EmployeeID) REFERENCES Employee(PersonID),
+  FOREIGN KEY(AppointmentID) REFERENCES Appointments(AppointmentID)
+);
+
+create table Procedures (
+  ProcedureID INTEGER PRIMARY key,
+  ProcedurePreformed varchar(25) NOT null
+);
+
+CREATE TABLE Procedures_MedicalEmployee_Join (
+  ProcedureID INTEGER not null,
+  ProfessionalsID INTEGER not null,
+  PRIMARY key (ProcedureID, ProfessionalsID),
+  FOREIGN KEY(ProcedureID) REFERENCES Procedures(ProcedureID),
+  FOREIGN KEY(ProfessionalsID) REFERENCES MedicalEmployee(PersonID)
+);
+
+CREATE TABLE Procedures_AcceptedInsurance_Join (
+  PerUnitCharge INTEGER not null,
+  ProcedureID INTEGER not null,
+  IPID INTEGER not null,
+  PRIMARY key (ProcedureID, IPID),
+  FOREIGN KEY(ProcedureID) REFERENCES Procedures(ProcedureID),
+  FOREIGN KEY(IPID) REFERENCES AcceptedInsurance(IPID)
+);
+
+CREATE TABLE Procedures_Appointments_Join (
+  ProcedureID INTEGER not null,
+  AppointmentID INTEGER not null,
+  PRIMARY key (ProcedureID, AppointmentID),
+  FOREIGN KEY(ProcedureID) REFERENCES Procedures(ProcedureID),
+  FOREIGN KEY(AppointmentID) REFERENCES Appointments(AppointmentID)
+);
+
+create table Invoice (
+  IID INTEGER PRIMARY key,
+  DateIssued Date not null,
+  Amount INTEGER not null,
+  PID INTEGER not null,
+  ProfessionalsID INTEGER not null,
+  FOREIGN KEY(PID) REFERENCES Payments(PID),
+  FOREIGN KEY(ProfessionalsID) REFERENCES MedicalEmployee(PersonID)
+);
+
+CREATE TABLE Invoice_AcceptedInsurance_Join (
+  AmoutnCovered INTEGER not null,
+  IID INTEGER not null,
+  IPID INTEGER not null,
+  PRIMARY key (IID, IPID),
+  FOREIGN KEY(IID) REFERENCES Invoice(IID),
+  FOREIGN KEY(IPID) REFERENCES AcceptedInsurance(IPID)
+);
+
+CREATE TABLE Procedures_Invoice_Join (
+  ProcedureID INTEGER not null,
+  IID INTEGER not null,
+  PRIMARY key (ProcedureID, IID),
+  FOREIGN KEY(ProcedureID) REFERENCES Procedures(ProcedureID),
+  FOREIGN KEY(IID) REFERENCES Invioice(IID)
+);
+
+
+
+
+insert into Person values (1, 'Noah', 'Perkins');
+insert into Person values (2, 'Omega', 'Batch');
+insert into Person values (3, 'Alpha', 'Stop');
+insert into Person values (4, 'Zach', 'Tangeman');
+insert into Person values (5, 'Zach', 'Hopkins');
+insert into Person values (6, 'Sidney', 'Choo');
+insert into Person values (7, 'Cynthia', 'Szeto');
+insert into Person values (8, 'Amber', 'Green');
+insert into Person values (9, 'Shobitha', 'Sanjeevan');
+insert into Person values (10, 'Ally', 'Zwelling');
+insert into Person values (11, 'John', 'Smith');
+insert into Person values (12, 'Jane', 'Doe');
+insert into Person values (13, 'John', 'Doe');
+insert into Person values (14, 'Jane', 'Smith');
+insert into Person values (15, 'Abby', 'Skye');
+insert into Person values (16, 'Olivia', 'Naberie');
+insert into Person values (17, 'Scott', 'Adams');
+insert into Person values (18, 'Lex', 'Fridman');
+insert into Person values (19, 'Ray', 'Dalio');
+insert into Person values (20, 'Elon', 'Musk');
+
+insert into Employee values (1, 80000, 'PhD', 'Harvard', 1, 1);
+insert into Employee values (2, 120000, 'PhD', 'OSU', 2, 1);
+insert into Employee values (3, 90000, 'PhD', 'Yale', 3, 1);
+insert into Employee values (4, 80000, 'PhD', 'OSU', 4, 1);
+insert into Employee values (5, 120000, 'PhD', 'Michigan', 5, 1);
+insert into Employee values (6, 90000, 'PhD', 'Harvard', 6, 2);
+insert into Employee values (7, 80000, 'PhD', 'OSU', 7, 2);
+insert into Employee values (8, 120000, 'PhD', 'Yale', 8, 2);
+insert into Employee values (9, 90000, 'PhD', 'OSU', 9, 2);
+insert into Employee  values (10, 80000, 'PhD', 'Michigan', 10, 2);
+insert into Employee values (11, 65000, 'BSE', 'Harvard', 11, 2);
+insert into Employee values (12, 70000, 'BSE', 'OSU', 12, 2);
+insert into Employee values (13, 80000, 'BSE', 'Yale', 13, 3);
+insert into Employee Values (14, 65000, 'BSE', 'OSU', 14, 4);
+insert into Employee values (15, 70000, 'BSE', 'Michigan', 15, 5);
+insert into Employee values (16, 80000, 'BSE', 'Harvard', 16, 6);
+insert into Employee values (17, 65000, 'BSE', 'OSU', 17, 7);
+insert into Employee values (18, 70000, 'BSE', 'Yale', 18, 8);
+insert into Employee values (19, 80000, 'BSE', 'OSU', 19, 9);
+insert into Employee values (20, 65000, 'BSE', 'Michigan', 20, 10);
+
+insert into MedicalEmployee values (1, 'Cleaning', 'Hygenist');
+insert into MedicalEmployee values (2, 'Cleaning', 'Hygenist');
+insert into MedicalEmployee values (3, 'Cleaning', 'Hygenist');
+insert into MedicalEmployee values (4, 'Cleaning', 'Hygenist');
+insert into MedicalEmployee values (5, 'Sickness Check', 'Dentist');
+insert into MedicalEmployee values (6, 'Sickness Check', 'Dentist');
+insert into MedicalEmployee values (7, 'Sickness Check', 'Dentist');
+insert into MedicalEmployee values (8, 'Sickness Check', 'Dentist');
+insert into MedicalEmployee values (9, 'Sickness Check', 'Dentist');
+insert into MedicalEmployee values (10, 'Cleaning', 'Hygenist');
+
+insert into NonMedicalEmployee VALues (11, 'Receptionist');
+insert into NonMedicalEmployee VALues (12, 'Receptionist');
+insert into NonMedicalEmployee VALues (13, 'Receptionist');
+insert into NonMedicalEmployee VALues (14, 'Receptionist');
+insert into NonMedicalEmployee VALues (15, 'Receptionist');
+insert into NonMedicalEmployee VALues (16, 'Receptionist');
+insert into NonMedicalEmployee VALues (17, 'Receptionist');
+insert into NonMedicalEmployee VALues (18, 'Receptionist');
+insert into NonMedicalEmployee VALues (19, 'Receptionist');
+insert into NonMedicalEmployee VALues (20, 'Receptionist');
+
+insert into Patient VALUES (1, '07/04/22', 'M', 'White', 21, TRUE, 6, 1);
+insert into Patient VALUES (3, '07/05/22', 'M', 'African', 35, TRUE, 1, 2);
+insert into Patient VALUES (5, '07/06/22', 'M', 'White', 27, TRUE, 2, 3);
+insert into Patient VALUES (7, '07/07/22', 'F', 'Asian', 18, TRUE, 3, 4);
+insert into Patient VALUES (9, '07/08/22', 'F', 'Indian', 21, TRUE, 4, 5);
+insert into Patient VALUES (11, '07/09/22', 'M', 'White', 67, FALSE, 5, 6);
+insert into Patient VALUES (13, '07/10/22', 'M', 'White', 19, TRUE, 7, 7);
+insert into Patient VALUES (15, '07/11/22', 'F', 'Pacific Islander', 16, TRUE, 8, 8);
+insert into Patient VALUES (17, '07/12/22', 'M', 'White', 22, TRUE, 9, 9);
+insert into Patient VALUES (20, '07/13/22', 'M', 'South African', 56, TRUE, 10, 10);
+
+insert into EmergencyContact VALues (1, 'Husband');
+insert into NonMedicalEmployee VALues (2, 'Sister');
+insert into NonMedicalEmployee VALues (3, 'Brother');
+insert into NonMedicalEmployee VALues (4, 'Father');
+insert into NonMedicalEmployee VALues (5, 'Brother');
+insert into NonMedicalEmployee VALues (6, 'Wife');
+insert into NonMedicalEmployee VALues (7, 'Mother');
+insert into NonMedicalEmployee VALues (8, 'Sister');
+insert into NonMedicalEmployee VALues (9, 'Cousin');
+insert into NonMedicalEmployee VALues (10, 'Friend');
+
+INSERt into Address VALUES ('8080 Nothing Ln', 'Columbus', 'OH', 44444, 'United States');
+INSERt into Address VALUES ('8081 Nothing Ln', 'Columbus', 'OH', 44444, 'United States');
+INSERt into Address VALUES ('8082 Nothing Ln', 'Columbus', 'OH', 44444, 'United States');
+INSERt into Address VALUES ('8083 Nothing Ln', 'Columbus', 'OH', 44444, 'United States');
+INSERt into Address VALUES ('8084 Nothing Ln', 'Columbus', 'OH', 44444, 'United States');
+INSERt into Address VALUES ('8085 Nothing Ln', 'Columbus', 'OH', 44444, 'United States');
+INSERt into Address VALUES ('8086 Nothing Ln', 'Columbus', 'OH', 44444, 'United States');
+INSERt into Address VALUES ('8087 Nothing Ln', 'Columbus', 'OH', 44444, 'United States');
+INSERt into Address VALUES ('8088 Nothing Ln', 'Columbus', 'OH', 44444, 'United States');
+INSERt into Address VALUES ('8089 Nothing Ln', 'Columbus', 'OH', 44444, 'United States');
+INSERt into Address VALUES ('1 N Street', 'Buffalo', 'NY', 12345, 'United States');
+INSERt into Address VALUES ('2 N Street', 'Buffalo', 'NY', 12345, 'United States');
+INSERt into Address VALUES ('3 N Street', 'Buffalo', 'NY', 12345, 'United States');
+INSERt into Address VALUES ('4 N Street', 'Buffalo', 'NY', 12345, 'United States');
+INSERt into Address VALUES ('5 N Street', 'Buffalo', 'NY', 12345, 'United States');
+INSERt into Address VALUES ('6 N Street', 'Buffalo', 'NY', 12345, 'United States');
+INSERt into Address VALUES ('7 N Street', 'Buffalo', 'NY', 12345, 'United States');
+INSERt into Address VALUES ('8 N Street', 'Buffalo', 'NY', 12345, 'United States');
+INSERt into Address VALUES ('9 N Street', 'Buffalo', 'NY', 12345, 'United States');
+INSERt into Address VALUES ('10 N Street', 'Buffalo', 'NY', 12345, 'United States');
+
+INSERT into Person_Address_Join VALUES (1, '8080 Nothing Ln');
+INSERT into Person_Address_Join VALUES (2, '2 N Street');
+INSERT into Person_Address_Join VALUES (3, '3 N Street');
+INSERT into Person_Address_Join VALUES (4, '4 N Street');
+INSERT into Person_Address_Join VALUES (5, '5 N Street');
+INSERT into Person_Address_Join VALUES (6, '8080 Nothing Ln');
+INSERT into Person_Address_Join VALUES (7, '6 N Street');
+INSERT into Person_Address_Join VALUES (8, '7 N Street');
+INSERT into Person_Address_Join VALUES (9, '7 N Street');
+INSERT into Person_Address_Join VALUES (10, '9 N Street');
+
+INSERT into Office VALUES (1, 'Red', '1 N Street');
+INSERT into Office VALUES (2, 'Red', '2 N Street');
+INSERT into Office VALUES (3, 'Apollo', '3 N Street');
+INSERT into Office VALUES (4, 'Zeus', '4 N Street');
+INSERT into Office VALUES (5, 'Gob', '5 N Street');
+INSERT into Office VALUES (6, 'Yankee', '6 N Street');
+INSERT into Office VALUES (7, 'Activity', '7 N Street');
+INSERT into Office VALUES (8, 'Omeeega', '8 N Street');
+INSERT into Office VALUES (9, 'Stuff', '9 N Street');
+INSERT into Office VALUES (10, 'Things', '10 N Street');
+
+INSERT into License VALUES (1, 'BackTeeth');
+INSERT into License VALUES (2, 'FrontTeeth');
+INSERT into License VALUES (3, 'UpperTeeth');
+INSERT into License VALUES (4, 'LowerTeeth');
+INSERT into License VALUES (5, 'XRay');
+INSERT into License VALUES (6, 'Cleaning');
+INSERT into License VALUES (7, 'Fluoride');
+INSERT into License VALUES (8, 'Brushing');
+INSERT into License VALUES (9, 'Calling');
+INSERT into License VALUES (10, 'Conversation');
+
+INSERT into MedicalEmployee_License_Join VALUES (1, 1);
+INSERT into MedicalEmployee_License_Join VALUES (2, 1);
+INSERT into MedicalEmployee_License_Join VALUES (3, 3);
+INSERT into MedicalEmployee_License_Join VALUES (4, 4);
+INSERT into MedicalEmployee_License_Join VALUES (5, 4);
+INSERT into MedicalEmployee_License_Join VALUES (6, 6);
+INSERT into MedicalEmployee_License_Join VALUES (7, 7);
+INSERT into MedicalEmployee_License_Join VALUES (8, 8);
+INSERT into MedicalEmployee_License_Join VALUES (9, 8);
+INSERT into MedicalEmployee_License_Join VALUES (10, 10);
+
+INSERT into Payments VALUES (1, '2022/06/14', 1);
+INSERT into Payments VALUES (2, '2022/06/15', 3);
+INSERT into Payments VALUES (3, '2022/06/16', 5);
+INSERT into Payments VALUES (4, '2022/06/17', 7);
+INSERT into Payments VALUES (5, '2022/06/18', 9);
+INSERT into Payments VALUES (6, '2022/06/19', 11);
+INSERT into Payments VALUES (7, '2022/06/20', 1);
+INSERT into Payments VALUES (8, '2022/06/21', 3);
+INSERT into Payments VALUES (9, '2022/06/22', 17);
+INSERT into Payments VALUES (10, '2022/06/23', 20);
+INSERT into Payments VALUES (11, '2022/06/24', 1);
+INSERT into Payments VALUES (12, '2022/06/25', 3);
+INSERT into Payments VALUES (13, '2022/06/26', 5);
+INSERT into Payments VALUES (14, '2022/06/27', 7);
+INSERT into Payments VALUES (15, '2022/06/28', 9);
+INSERT into Payments VALUES (16, '2022/06/29', 11);
+INSERT into Payments VALUES (17, '2022/06/30', 1);
+INSERT into Payments VALUES (18, '2022/07/01', 3);
+INSERT into Payments VALUES (19, '2022/07/02', 17);
+INSERT into Payments VALUES (20, '2022/07/03', 20);
+INSERT into Payments VALUES (21, '2022/07/04', 1);
+INSERT into Payments VALUES (22, '2022/07/05', 3);
+INSERT into Payments VALUES (23, '2022/07/06', 5);
+INSERT into Payments VALUES (24, '2022/07/07', 7);
+INSERT into Payments VALUES (25, '2022/07/08', 9);
+INSERT into Payments VALUES (26, '2022/07/09', 11);
+INSERT into Payments VALUES (27, '2022/07/10', 1);
+INSERT into Payments VALUES (28, '2022/07/11', 3);
+INSERT into Payments VALUES (29, '2022/07/12', 17);
+INSERT into Payments VALUES (30, '2022/07/13', 20);
+
+INSERT into PaymentMethod VALUES (1, 1);
+INSERT into PaymentMethod VALUES (2, 2);
+INSERT into PaymentMethod VALUES (3, 3);
+INSERT into PaymentMethod VALUES (4, 4);
+INSERT into PaymentMethod VALUES (5, 5);
+INSERT into PaymentMethod VALUES (6, 6);
+INSERT into PaymentMethod VALUES (7, 7);
+INSERT into PaymentMethod VALUES (8, 8);
+INSERT into PaymentMethod VALUES (9, 9);
+INSERT into PaymentMethod VALUES (10, 10);
+
+INSERT into Cash VALUES (1, 400);
+INSERT into Cash VALUES (2, 200);
+INSERT into Cash VALUES (3, 250);
+INSERT into Cash VALUES (24, 400);
+INSERT into Cash VALUES (25, 500);
+INSERT into Cash VALUES (26, 400);
+INSERT into Cash VALUES (27, 500);
+INSERT into Cash VALUES (28, 400);
+INSERT into Cash VALUES (29, 500);
+INSERT into Cash VALUES (30, 600);
+
+INSERT into Check_ VALUES (4, 400, '2022/06/14', 'Dr. Choo');
+INSERT into Check_ VALUES (5, 600, '2022/06/14', 'Dr. Choo');
+INSERT into Check_ VALUES (6, 900, '2022/06/14', 'Dr. Choo');
+INSERT into Check_ VALUES (17, 400, '2022/06/14', 'Dr. Choo');
+INSERT into Check_ VALUES (18, 600, '2022/06/14', 'Dr. Choo');
+INSERT into Check_ VALUES (19, 900, '2022/06/14', 'Dr. Choo');
+INSERT into Check_ VALUES (20, 400, '2022/06/14', 'Dr. Choo');
+INSERT into Check_ VALUES (21, 600, '2022/06/14', 'Dr. Choo');
+INSERT into Check_ VALUES (22, 900, '2022/06/14', 'Dr. Choo');
+INSERT into Check_ VALUES (23, 1500, '2022/06/14', 'Dr. Choo');
+
+INSERT into CreditCard VALUES ('4005284479136381', 7, 111, '2030/01/01', 'Noah Perkins');
+INSERT into CreditCard VALUES ('4005273783740962', 8, 110, '2030/01/02', 'Sidney Choo');
+INSERT into CreditCard VALUES ('4005263088345543', 9, 109, '2030/01/03', 'Cynthia Szeto');
+INSERT into CreditCard VALUES ('4005252392950124', 10, 108, '2030/01/04', 'Amber Green');
+INSERT into CreditCard VALUES ('4005241697554705', 11, 107, '2030/01/05', 'Shobitha Sanjeevan');
+INSERT into CreditCard VALUES ('4005231002159286', 12, 106, '2030/01/06', 'Ally Zwelling');
+INSERT into CreditCard VALUES ('4005220306763867', 13, 105, '2030/01/07', 'Jane Doe');
+INSERT into CreditCard VALUES ('4005209611368448', 14, 104, '2030/01/08', 'Lex Fridman');
+INSERT into CreditCard VALUES ('4005198915973029', 15, 103, '2030/01/09', 'Ray Dalio');
+INSERT into CreditCard VALUES ('4005188220577610', 16, 102, '2030/01/10', 'Olivia Naberie');
+
+INSERT into Patient_CreditCard_Join VALUES (1, '4005284479136381');
+INSERT into Patient_CreditCard_Join VALUES (6, '4005273783740962');
+INSERT into Patient_CreditCard_Join VALUES (7, '4005263088345543');
+INSERT into Patient_CreditCard_Join VALUES (8, '4005252392950124');
+INSERT into Patient_CreditCard_Join VALUES (9, '4005241697554705');
+INSERT into Patient_CreditCard_Join VALUES (10, '4005231002159286');
+INSERT into Patient_CreditCard_Join VALUES (12, '4005220306763867');
+INSERT into Patient_CreditCard_Join VALUES (18, '4005209611368448');
+INSERT into Patient_CreditCard_Join VALUES (19, '4005198915973029');
+INSERT into Patient_CreditCard_Join VALUES (16, '4005188220577610');
+
+INSERT into Allergies VALUES (1, 'Peanuts');
+INSERT into Allergies VALUES (2, 'Nuts');
+INSERT into Allergies VALUES (3, 'Walnuts');
+INSERT into Allergies VALUES (4, 'Pollin');
+INSERT into Allergies VALUES (5, 'Peanutbutter');
+INSERT into Allergies VALUES (6, 'Bees');
+INSERT into Allergies VALUES (7, 'Penecilin');
+INSERT into Allergies VALUES (8, 'Fluoride');
+INSERT into Allergies VALUES (9, 'Chocolate');
+INSERT into Allergies VALUES (10, 'Milk');
+
+INSERT into Patient_Allergies_Join VALUES (2, 1);
+INSERT into Patient_Allergies_Join VALUES (3, 2);
+INSERT into Patient_Allergies_Join VALUES (4, 3);
+INSERT into Patient_Allergies_Join VALUES (5, 4);
+INSERT into Patient_Allergies_Join VALUES (1, 5);
+INSERT into Patient_Allergies_Join VALUES (12, 6);
+INSERT into Patient_Allergies_Join VALUES (13, 7);
+INSERT into Patient_Allergies_Join VALUES (14, 8);
+INSERT into Patient_Allergies_Join VALUES (15, 9);
+INSERT into Patient_Allergies_Join VALUES (17, 10);
+
+INSERT into Medications VALUES (1, 'Teemocil');
+INSERT into Medications VALUES (2, 'Abilify');
+INSERT into Medications VALUES (3, 'Ambien');
+INSERT into Medications VALUES (4, 'Prozac');
+INSERT into Medications VALUES (5, 'Flagyl');
+INSERT into Medications VALUES (6, 'Lexapro');
+INSERT into Medications VALUES (7, 'Tramadol');
+INSERT into Medications VALUES (8, 'Neurontin');
+INSERT into Medications VALUES (9, 'Mobic');
+INSERT into Medications VALUES (10, 'Cipro');
+
+INSERT into Patient_Medications_Join VALUES (2, 1);
+INSERT into Patient_Medications_Join VALUES (3, 2);
+INSERT into Patient_Medications_Join VALUES (4, 3);
+INSERT into Patient_Medications_Join VALUES (5, 4);
+INSERT into Patient_Medications_Join VALUES (1, 5);
+INSERT into Patient_Medications_Join VALUES (12, 6);
+INSERT into Patient_Medications_Join VALUES (13, 7);
+INSERT into Patient_Medications_Join VALUES (14, 8);
+INSERT into Patient_Medications_Join VALUES (15, 9);
+INSERT into Patient_Medications_Join VALUES (17, 10);
+
+INSERT into MedicalConditions VALUES (1, 'Cancer');
+INSERT into MedicalConditions VALUES (2, 'COVID');
+INSERT into MedicalConditions VALUES (3, 'Ocular Deteriation');
+INSERT into MedicalConditions VALUES (4, 'Ginigivitis');
+INSERT into MedicalConditions VALUES (5, 'Cystic Vibrosis');
+INSERT into MedicalConditions VALUES (6, 'Diabetes');
+INSERT into MedicalConditions VALUES (7, 'Pregnant');
+INSERT into MedicalConditions VALUES (8, 'AIDS');
+INSERT into MedicalConditions VALUES (9, 'HIV');
+INSERT into MedicalConditions VALUES (10, 'Chlamydia');
+
+INSERT into Patient_MedicalConditions_Join VALUES (2, 2);
+INSERT into Patient_MedicalConditions_Join VALUES (3, 2);
+INSERT into Patient_MedicalConditions_Join VALUES (4, 2);
+INSERT into Patient_MedicalConditions_Join VALUES (5, 2);
+INSERT into Patient_MedicalConditions_Join VALUES (1, 7);
+INSERT into Patient_MedicalConditions_Join VALUES (12, 7);
+INSERT into Patient_MedicalConditions_Join VALUES (13, 1);
+INSERT into Patient_MedicalConditions_Join VALUES (14, 4);
+INSERT into Patient_MedicalConditions_Join VALUES (15, 4);
+INSERT into Patient_MedicalConditions_Join VALUES (17, 7);
+
+INSERT into AcceptedInsurance VALUES (1, 'Alpha', 'Dental', 400);
+INSERT into AcceptedInsurance VALUES (2, 'Iot', 'Dental', 500);
+INSERT into AcceptedInsurance VALUES (3, 'Eta', 'Dental', 400);
+INSERT into AcceptedInsurance VALUES (4, 'Omega', 'Dental', 500);
+INSERT into AcceptedInsurance VALUES (5, 'Epsilon', 'Dental', 400);
+INSERT into AcceptedInsurance VALUES (6, 'Beta', 'Dental', 500);
+INSERT into AcceptedInsurance VALUES (7, 'Rho', 'Dental', 400);
+INSERT into AcceptedInsurance VALUES (8, 'Pi', 'Dental', 500);
+INSERT into AcceptedInsurance VALUES (9, 'Sigma', 'Dental', 100);
+INSERT into AcceptedInsurance VALUES (10, 'Dalle', 'Dental', 900);
+
+INSERT into Appointments VALUES (1, '2022/07/04', TRUE, 2, 1);
+INSERT into Appointments VALUES (2, '2022/07/05', TRUE, 3, 2);
+INSERT into Appointments VALUES (3, '2022/07/06', TRUE, 4, 3);
+INSERT into Appointments VALUES (4, '2022/07/07', TRUE, 5, 4);
+INSERT into Appointments VALUES (5, '2022/07/08', TRUE, 1, 5);
+INSERT into Appointments VALUES (6, '2022/07/09', FALSE, 2, 6);
+INSERT into Appointments VALUES (7, '2022/07/10', TRUE, 13, 7);
+INSERT into Appointments VALUES (8, '2022/07/11', TRUE, 14, 8);
+INSERT into Appointments VALUES (9, '2022/07/12', TRUE, 15, 9);
+INSERT into Appointments VALUES (10, '2022/07/13', TRUE, 17, 10);
+
+INSERT into Employee_Appointment_Join VALUES (1, 1);
+INSERT into Employee_Appointment_Join VALUES (11, 2);
+INSERT into Employee_Appointment_Join VALUES (12, 3);
+INSERT into Employee_Appointment_Join VALUES (4, 4);
+INSERT into Employee_Appointment_Join VALUES (14, 5);
+INSERT into Employee_Appointment_Join VALUES (15, 6);
+INSERT into Employee_Appointment_Join VALUES (5, 7);
+INSERT into Employee_Appointment_Join VALUES (6, 8);
+INSERT into Employee_Appointment_Join VALUES (7, 9);
+INSERT into Employee_Appointment_Join VALUES (9, 10);
+
+INSERT into Procedures VALUES (1, 'All Teeth Cleaning');
+INSERT into Procedures VALUES (2, 'Front Tooth Pull');
+INSERT into Procedures VALUES (3, 'Molar Tooth Pull');
+INSERT into Procedures VALUES (4, 'Wisdom Tooth Pull');
+INSERT into Procedures VALUES (5, 'Crown');
+INSERT into Procedures VALUES (6, 'Cap');
+INSERT into Procedures VALUES (7, 'Braces');
+INSERT into Procedures VALUES (8, 'Retainer');
+INSERT into Procedures VALUES (9, 'Teeth Alignment');
+INSERT into Procedures VALUES (10, 'Tooth Picking');
+
+INSERT into Procedures_MedicalEmployee_Join VALUES (1, 1);
+INSERT into Procedures_MedicalEmployee_Join VALUES (1, 2);
+INSERT into Procedures_MedicalEmployee_Join VALUES (1, 3);
+INSERT into Procedures_MedicalEmployee_Join VALUES (3, 4);
+INSERT into Procedures_MedicalEmployee_Join VALUES (4, 5);
+INSERT into Procedures_MedicalEmployee_Join VALUES (1, 6);
+INSERT into Procedures_MedicalEmployee_Join VALUES (1, 7);
+INSERT into Procedures_MedicalEmployee_Join VALUES (4, 8);
+INSERT into Procedures_MedicalEmployee_Join VALUES (1, 9);
+INSERT into Procedures_MedicalEmployee_Join VALUES (7, 10);
+
+INSERT into Procedures_AcceptedInsurance_Join VALUES (25, 1, 1);
+INSERT into Procedures_AcceptedInsurance_Join VALUES (50, 2, 2);
+INSERT into Procedures_AcceptedInsurance_Join VALUES (100, 3, 3);
+INSERT into Procedures_AcceptedInsurance_Join VALUES (150, 4, 4);
+INSERT into Procedures_AcceptedInsurance_Join VALUES (200, 5, 5);
+INSERT into Procedures_AcceptedInsurance_Join VALUES (25, 1, 6);
+INSERT into Procedures_AcceptedInsurance_Join VALUES (500, 7, 7);
+INSERT into Procedures_AcceptedInsurance_Join VALUES (400, 8, 8);
+INSERT into Procedures_AcceptedInsurance_Join VALUES (260, 9, 1);
+INSERT into Procedures_AcceptedInsurance_Join VALUES (195, 10, 10);
+
+INSERT into Procedures_Appointments_Join VALUES (10, 1);
+INSERT into Procedures_Appointments_Join VALUES (5, 1);
+INSERT into Procedures_Appointments_Join VALUES (10, 2);
+INSERT into Procedures_Appointments_Join VALUES (6, 2);
+INSERT into Procedures_Appointments_Join VALUES (10, 3);
+INSERT into Procedures_Appointments_Join VALUES (6, 3);
+INSERT into Procedures_Appointments_Join VALUES (1, 3);
+INSERT into Procedures_Appointments_Join VALUES (10, 6);
+INSERT into Procedures_Appointments_Join VALUES (10, 7);
+INSERT into Procedures_Appointments_Join VALUES (10, 8);
+
+INSERT into Invoice VALUES (1, '2022/07/04', 500, 1, 1);
+INSERT into Invoice VALUES (2, '2022/07/05', 600, 2, 1);
+INSERT into Invoice VALUES (3, '2022/07/06', 700, 3, 2);
+INSERT into Invoice VALUES (4, '2022/07/07', 800, 4, 3);
+INSERT into Invoice VALUES (5, '2022/07/08', 900, 5, 4);
+INSERT into Invoice VALUES (6, '2022/07/09', 1000, 6, 2);
+INSERT into Invoice VALUES (7, '2022/07/10', 1100, 8, 6);
+INSERT into Invoice VALUES (8, '2022/07/11', 1200, 7, 7);
+INSERT into Invoice VALUES (9, '2022/07/12', 1300, 10, 10);
+INSERT into Invoice VALUES (10, '2022/07/13', 1400, 9, 9);
+
+INSERT into Invoice_AcceptedInsurance_Join VALUES (50, 1, 1);
+INSERT into Invoice_AcceptedInsurance_Join VALUES (50, 2, 2);
+INSERT into Invoice_AcceptedInsurance_Join VALUES (100, 3, 3);
+INSERT into Invoice_AcceptedInsurance_Join VALUES (100, 4, 4);
+INSERT into Invoice_AcceptedInsurance_Join VALUES (65, 5, 5);
+INSERT into Invoice_AcceptedInsurance_Join VALUES (65, 6, 6);
+INSERT into Invoice_AcceptedInsurance_Join VALUES (90, 7, 7);
+INSERT into Invoice_AcceptedInsurance_Join VALUES (100, 8, 8);
+INSERT into Invoice_AcceptedInsurance_Join VALUES (50, 9, 1);
+INSERT into Invoice_AcceptedInsurance_Join VALUES (100, 10, 10);
+
+INSERT into Procedures_Invoice_Join VALUES (10, 1);
+INSERT into Procedures_Invoice_Join VALUES (5, 1);
+INSERT into Procedures_Invoice_Join VALUES (10, 2);
+INSERT into Procedures_Invoice_Join VALUES (6, 2);
+INSERT into Procedures_Invoice_Join VALUES (10, 5);
+INSERT into Procedures_Invoice_Join VALUES (6, 5);
+INSERT into Procedures_Invoice_Join VALUES (1, 5);
+INSERT into Procedures_Invoice_Join VALUES (10, 8);
+INSERT into Procedures_Invoice_Join VALUES (10, 9);
+INSERT into Procedures_Invoice_Join VALUES (10, 10);
+
+
+
+
+
+
+
+
+
+
+
+
+

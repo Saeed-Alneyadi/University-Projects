@@ -1,0 +1,15 @@
+CREATE VIEW EXQ1
+AS SELECT AVG(Amount) 
+   FROM   (SELECT * FROM (SELECT * FROM Patient, Appointment), Invoice)
+   WHERE  Cancelled = FALSE;
+
+CREATE VIEW EXQ2
+AS SELECT Allergy.allergy_name, Count(Distinct PersonID)
+   FROM   (SELECT * FROM Patient, Patient_Allergy_Join
+   WHERE  Patient.PersonID = Patient_Allergy_Join.PersonID), Allergy
+   WHERE  Allergy.allergy_name = Allergy.allergy_name;
+
+CREATE VIEW EXQ3
+AS SELECT SUM(Amount) 
+   FROM   Invoice 
+   WHERE  DateIssued BETWEEN '2022/01/01' AND '2022/12/31';

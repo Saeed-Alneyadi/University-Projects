@@ -1,0 +1,132 @@
+CREATE VIEW SQ1P1
+AS  SELECT  * 
+    FROM    Person, Patient 
+    WHERE   Person.ID = Patient.PersonID;
+CREATE VIEW SQ1P2
+AS  SELECT  * 
+    FROM    SQ1P1, Patient_Medication_Join 
+    WHERE   SQ1P1.personid = Patient_Medication_Join.PersonID;
+CREATE VIEW SQ1P3
+AS  SELECT  Fname, Lname, SQ1P2.Medication_Name, Brand
+    FROM    SQ1P2 , Medication
+    WHERE   SQ1P2.Medication_Name = Medication.Medication_Name;
+
+
+CREATE VIEW SQ2P1
+AS  SELECT IPID, Name 
+    FROM   AcceptedInsurance;
+CREATE VIEW SQ2P2
+AS  SELECT *
+    FROM   Patient, SQ2P1
+    WHERE  Patient.IPID = SQ2P1.IPID AND SQ2P1.Name = "Omega";
+
+
+CREATE VIEW SQ3P1
+AS  SELECT * 
+    FROM   Appointment, Procedure_Appointment_Join
+    WHERE  Appointment.AppointmentID = Procedure_Appointment_Join.AppointmentID;
+CREATE VIEW SQ3P2
+AS  SELECT * 
+    FROM   Procedure, SQ3P1
+    WHERE  SQ3P1.procedureid = Procedure.procedureid;
+CREATE VIEW SQ3P3
+AS  SELECT * 
+    FROM   SQ3P2, Procedure_MedicalEmployee_Join
+    WHERE  SQ3P2.ProcedureID = Procedure_MedicalEmployee_Join.ProcedureID;
+CREATE VIEW SQ3P4
+AS  SELECT * 
+    FROM   SQ3P3, MedicalEmployee
+    WHERE  SQ3P3.ProfessionalsID = MedicalEmployee.PersonID;
+CREATE VIEW SQ3P5
+AS  SELECT * 
+    FROM   SQ3P4, Person
+    WHERE  SQ3P4.personid = Person.ID;
+CREATE VIEW SQ3P6
+AS  SELECT ProcedurePreformed, Date_
+	FROM   SQ3P5
+    WHERE  Lname = "Smilow";
+
+
+CREATE VIEW SQ4P1
+AS SELECT *
+    FROM   Invoice
+    WHERE  DateIssued > '2022/06/30' AND Amount > 600;
+
+
+CREATE VIEW SQ5P1
+AS  SELECT *  
+    FROM   Person, Patient 
+    WHERE  Patient.PersonID = Person.ID;
+CREATE VIEW SQ5P2
+AS  SELECT *  
+    FROM   SQ5P1, Appointment 
+    WHERE  SQ5P1.personid = Appointment.patientid;
+CREATE VIEW SQ5P3
+AS  SELECT * 
+    FROM   SQ5P2, Invoice 
+    WHERE  SQ5P2.IID = Invoice.IID;
+CREATE VIEW SQ5P4
+AS  SELECT ID, Fname, Lname, DateIssued, Amount  
+    FROM   SQ5P3
+    WHERE  DateIssued BETWEEN  '2021/01/01' AND  '2021/12/31';
+
+
+CREATE VIEW SQ6P1
+AS  SELECT *  
+    FROM   Person, MedicalEmployee 
+    WHERE  MedicalEmployee.PersonID = Person.ID AND MedicalEmployee.position = 'Dentist';
+CREATE VIEW SQ6P2
+AS  SELECT *
+    FROM   SQ6P1, Procedure_MedicalEmployee_Join 
+    WHERE  SQ6P1.PersonID = Procedure_MedicalEmployee_Join.professionalsid;
+CREATE VIEW SQ6P3
+AS  SELECT *, COUNT(DISTINCT Procedure.procedureid) as Number
+    FROM   SQ6P2, Procedure 
+    WHERE  SQ6P2.procedureid = Procedure.procedureid;
+CREATE VIEW SQ6P4
+AS  SELECT Fname, Lname
+    FROM   SQ6P3
+    GROUP BY SQ6P3.procedureId
+    HAVING Number < 5;
+
+
+CREATE VIEW SQ7P1
+AS  SELECT * 
+    FROM   Appointment, Procedure_Appointment_Join 
+    WHERE  Appointment.appointmentid = Procedure_Appointment_Join.appointmentid;
+CREATE VIEW SQ7P2
+AS  SELECT * 
+    FROM   Procedure, SQ7P1 
+    WHERE  SQ7P1.ProcedureID = Procedure.ProcedureID;
+CREATE VIEW SQ7P3
+AS  SELECT * 
+    FROM   SQ7P2, Invoice 
+    WHERE  SQ7P2.IID = Invoice.IID;
+CREATE VIEW SQ7P4
+AS  SELECT ProcedureID, ProcedurePreformed, MAX(Amount )
+    FROM   SQ7P3;
+
+
+CREATE VIEW SQ8P1
+AS  SELECT * 
+    FROM   Payment, PaymentMethod 
+    WHERE  Payment.PID = PaymentMethod.PID;
+CREATE VIEW SQ8P2
+AS  SELECT * 
+    FROM   SQ8P1, Invoice 
+    WHERE  SQ8P1.PID = Invoice.PID;
+CREATE VIEW SQ8P3
+AS  SELECT Payment_type, Count(distinct PID), Sum(Amount) 
+    FROM   SQ8P2;
+
+
+CREATE VIEW SQ9P1
+AS  SELECT * 
+    FROM   Patient, AcceptedInsurance 
+    WHERE  Patient.IPID = AcceptedInsurance.IPID;
+CREATE VIEW SQ9P2
+AS  SELECT SQ9P1.Name, COUNT(distinct SQ9P1.IPID) as Number
+    FROM   SQ9P1;
+CREATE VIEW SQ9P3
+AS  SELECT SQ9P2.Name, COUNT(Number)
+    FROM   SQ9P2;

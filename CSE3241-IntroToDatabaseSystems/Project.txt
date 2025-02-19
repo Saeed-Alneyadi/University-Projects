@@ -1,0 +1,194 @@
+CREATE VIEW Result
+AS  SELECT  * 
+    FROM    Patient, PMJ 
+    WHERE   Patient.MID = PMJ.MID;
+
+CREATE VIEW LastResult
+AS  SELECT  ID, Fname, Lname, MID
+    FROM    Result , Medication
+    WHERE   Result.MID = Medication.MID;
+
+-----------------------------------------
+
+CREATE VIEW Temp1
+AS  SELECT IPID, Name 
+    FROM   Accpeted_Insurance;
+
+CREATE VIEW Result
+AS  SELECT *
+    FROM   Patient, Temp
+    WHERE  Patient.IPID = Accpeted_Insurance.IPID AND Accpeted_Insurance.Name = "Delta Dental";
+
+-----------------------------------------
+
+CREATE VIEW Temp1
+AS  SELECT * 
+    FROM   Procedures, Procedures_Appointments_Join
+    WHERE  Procedures.ProceduresID = Procedures_Appointments_Join.ProceduresID;
+
+CREATE VIEW Temp2
+AS  SELECT * 
+    FROM   Proc_Appt, Temp1
+    WHERE  Proc_Appt.ProfesstionalsID = Docters.ID;
+
+CREATE VIEW Result
+AS  SELECT Procedures_Performed, Date
+	FROM   Temp2
+    WHERE  Lname = "Smilow";
+
+-----------------------------------------
+
+CREATE VIEW Temp1
+AS  SELECT * 
+    FROM   Patient, Appointment 
+    WHERE  Patient.PID = Appointment.PID;
+
+CREATE VIEW Temp2
+AS  SELECT *  
+    FROM   Temp1, Invoice 
+    WHERE  Pati_Appt.IID = Invoice.IID;
+
+CREATE VIEW Result
+AS  SELECT *
+    FROM   Temp2
+    WHERE  Date > 30 AND Amount > 10;
+
+-----------------------------------------
+
+CREATE VIEW Temp1
+AS  SELECT *  
+    FROM   Paitent, Appointment 
+    WHERE  Paitent.PID = Appointment.PayeeID;
+
+CREATE VIEW Temp2
+AS  SELECT * 
+    FROM   Temp1, Invoice 
+    WHERE  Patient_Appointment.IID = Invoice.IID;
+
+CREATE VIEW Result
+AS  SELECT ID, Fname, Lname, Date, Amount  
+    FROM   Temp2 
+    WHERE  Date > 01/01/2021 AND Date < 12/31/2021;
+
+-----------------------------------------
+
+CREATE VIEW Temp1
+AS  SELECT * 
+    FROM   Appointment, Procedures_Appointments_Join 
+    WHERE  AppointmentID = AppointmentID;
+
+CREATE VIEW Temp2
+AS  SELECT * 
+    FROM   Medical_Employee, Temp1 
+    WHERE  Medical_Employee.ID = ProfessionalsID;
+
+CREATE VIEW Temp3
+AS  SELECT * 
+    FROM   Temp2 
+    WHERE  Doctors.Degree = “Doctor”;
+
+CREATE VIEW Temp4
+AS  SELECT * 
+    FROM   Temp3;
+
+CREATE VIEW Result
+AS  SELECT Doctors.ID, Count(Distinct ProcedureID) 
+    FROM   Temp4 
+    WHERE  Count_ProceduresID < 5;
+
+-----------------------------------------
+
+CREATE VIEW Temp1
+AS  SELECT * 
+    FROM   Appointment, Procedures_Appointments_Join 
+    WHERE  AppointmentID = AppointmentID;
+
+CREATE VIEW Temp2
+AS  SELECT * 
+    FROM   Procedures, Temp1 
+    WHERE  ProcedureID = ProcedureID;
+
+CREATE VIEW Temp3
+AS  SELECT * 
+    FROM   Temp2, Invoice 
+    WHERE  Pnt_Proc_Appt.IID = Invoice.IID;
+
+CREATE VIEW Temp4
+AS  SELECT ProcedureID, Procedure_Preformed, Amount 
+    FROM   Temp3;
+
+CREATE VIEW Result
+AS  SELECT ProcedureID, Procedure_Preformed, MAX(Amount) 
+    FROM   Temp4;
+
+
+-----------------------------------------
+
+CREATE VIEW Temp1
+AS  SELECT * 
+    FROM   Payment, PaymentMethod 
+    WHERE  Payment.PID = PaymentMehtod.PID;
+
+CREATE VIEW Temp2
+AS  SELECT * 
+    FROM   Temp1, Invoice 
+    WHERE  Result.PID = Invoice.PID;
+
+CREATE VIEW Result
+AS  SELECT Payment_type, Count(distinct PID), Sum(Amount) 
+    FROM   Temp2;
+
+    *******
+
+-----------------------------------------
+
+CREATE VIEW Temp1
+AS  SELECT * 
+    FROM   Patient, Accpeted_Insurance 
+    WHERE  MID = IPID;
+
+CREATE VIEW Temp2
+AS  SELECT MID, COUNT(distinct ID) 
+    FROM   Temp;
+
+CREATE VIEW Result
+AS  SELECT MAX(count_insurance_plan) 
+    FROM   Temp2;
+
+-----------------------------------------
+
+CREATE VIEW Temp1
+AS  SELECT * 
+    FROM   Patient, Appointment;
+
+CREATE VIEW Temp2
+AS  SELECT * 
+    FROM   Temp1, Payments;
+
+CREATE VIEW Result
+AS  SELECT AVG(Amount) 
+    FROM   Temp2
+    WHERE  Cancelled = “False”;
+
+-----------------------------------------
+
+CREATE VIEW Temp1
+AS  SELECT * 
+    FROM   Patient, Pateint_Allergy 
+    WHERE  Pateint.PID = Patient_Alllegry.PatientID;
+
+CREATE VIEW Result
+AS  SELECT Allergy, Count(Distinct PID) 
+    FROM   Temp1, Allergy 
+    WHERE  AID = Allergy.PID;
+
+-----------------------------------------
+
+CREATE VIEW Temp1
+AS  SELECT * 
+    FROM   Payments 
+    WHERE  Dates > 01/01/2021 AND 12/31/2021;
+
+CREATE VIEW Result
+AS  SELECT SUM(Amount) 
+    FROM   Temp1;
