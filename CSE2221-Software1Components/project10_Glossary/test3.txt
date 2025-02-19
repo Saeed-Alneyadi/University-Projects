@@ -1,0 +1,9 @@
+Apple
+It is a spherical-shaped fruit that have diffferent types that differ in color.
+
+Orange
+it is a spherical-shaped fruit with orange color.
+
+Banana
+it is an arc-shaped fruit with yellow color.
+
