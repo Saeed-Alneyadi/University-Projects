@@ -1,0 +1,18 @@
+procedure c13 is
+	procedure A( r ) is
+		integer x;
+		x := r[0];
+		out(x);
+	end
+	procedure B( r ) is
+		integer x;
+		x := r[0];
+		out(x);
+	end
+	array a;
+begin
+	a := new integer[1];
+	a[0] := 13;
+	begin A(a);
+	begin B(a);
+end

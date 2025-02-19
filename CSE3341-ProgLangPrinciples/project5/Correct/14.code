@@ -1,0 +1,15 @@
+procedure t14 is
+	procedure A(z) is
+		array x;
+        array y;
+        x := new integer[2]; 
+		y := new integer[4];
+		x := array y; 
+	end
+	array z;
+begin
+	z := new integer[6];
+    z[0] := 1;
+	begin A(z);
+	out(z[0]);
+end

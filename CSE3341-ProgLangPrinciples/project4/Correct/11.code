@@ -1,0 +1,10 @@
+procedure c11 is
+	procedure A( r ) is
+		out(r);
+	end
+	array x;
+begin
+	x := new integer[1];
+	x[0] := 5;
+	begin A(x);
+end

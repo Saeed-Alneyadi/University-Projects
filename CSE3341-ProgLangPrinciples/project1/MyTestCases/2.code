@@ -1,0 +1,13 @@
+procedure METHOD begin
+    int x := 2023;
+
+    output x;
+
+    int y := x * x;
+
+    output y ;
+
+    int z := x + y;
+
+    result;
+end

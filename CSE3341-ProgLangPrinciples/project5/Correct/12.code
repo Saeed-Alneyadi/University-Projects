@@ -1,0 +1,18 @@
+procedure t12 is
+    array x;
+	procedure FUNC(x) is
+		array y;
+		if x < 1 then
+			out(x);
+		else
+			y := new integer[3];
+            y[0] := 0;
+            y[1] := 1;
+            y[2] := 2;
+		end
+	end
+begin
+	x := new integer[1];
+	x[0] := 100;
+	begin FUNC(x);
+end

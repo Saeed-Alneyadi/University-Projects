@@ -1,0 +1,15 @@
+procedure t13 is
+    array x;
+	array y;
+begin
+	x := new integer[3];
+    y := new integer[4];
+	x[0] := 0;
+    x[1] := 1;
+    x[2] := 2;
+    y := array x;
+    y[0] := 2;
+    y[1] := 1;
+    y[2] := 0;
+    y := new integer[1];
+end

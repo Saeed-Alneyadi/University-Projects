@@ -1,0 +1,5 @@
+procedure test27 is
+	integer x;
+begin
+	x := 5 + x;
+end

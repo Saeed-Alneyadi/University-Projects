@@ -1,0 +1,9 @@
+procedure test28 is
+	integer x;
+	integer y;
+begin
+	x := 5;
+	y := 10;
+	out(x);
+	out(y);
+end

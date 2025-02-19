@@ -1,0 +1,16 @@
+
+
+\n
+procedure FACTORIAL begin
+    int x := 1
+    int y := 1;
+    
+    intint z:= x + y;
+
+    while (true) (
+        x :=y;
+        y = z;
+        z = x +y;
+    end
+
+;

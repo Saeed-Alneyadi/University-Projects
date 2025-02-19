@@ -1,0 +1,11 @@
+procedure err6 is
+	procedure A( r, r, r ) is
+		integer x;
+		x := r[0];
+	end
+begin
+	array x;
+	x := new integer[1];
+	x[0] := 7;
+	begin A(x, x);
+end

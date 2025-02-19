@@ -1,0 +1,11 @@
+procedure err5 is
+	procedure CSE( r ) is
+		integer x;
+		x := r[0];
+	end
+	array x;
+begin
+	x := new integer[1];
+	x[0] := 5;
+	begin OSU(x);
+end

@@ -1,0 +1,15 @@
+procedure err3 is
+	procedure method( r ) is
+		integer x;
+		x := r[0];
+	end
+	procedure method( r ) is
+		integer x;
+		x := r[0];
+	end
+	array a;
+begin
+	x := new integer[1];
+	x[0] := 7;
+	begin method(x);
+end

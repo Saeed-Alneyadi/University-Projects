@@ -1,0 +1,10 @@
+
+procedure FUNC begin
+    x := 1;
+
+    x := x + 5;
+
+    y := 4;
+
+    y = y + x;
+end

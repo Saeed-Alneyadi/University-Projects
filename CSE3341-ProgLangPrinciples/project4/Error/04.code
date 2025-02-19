@@ -1,0 +1,10 @@
+procedure err4 is
+	procedure nothing ( r ) is
+	end
+	array x;
+begin
+	x := new integer[4];
+	x := 4;
+	begin nothing(x);
+	out(4);
+end

@@ -1,0 +1,6 @@
+procedure err15 is
+	integer x;
+begin
+	x := ;
+	out(x);
+end

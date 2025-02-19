@@ -1,0 +1,10 @@
+procedure t11 is
+	array x;
+	array y;
+    integer z;
+begin
+	x := new integer[1];
+	x[0] := 10;
+	y := array x;
+	out(y[0]);
+end
