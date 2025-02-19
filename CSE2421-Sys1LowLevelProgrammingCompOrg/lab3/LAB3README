@@ -1,0 +1,23 @@
+BY SUBMITTING THIS FILE TO CARMEN, I CERTIFY THAT I HAVE STRICTLY ADHERED TO 
+THE TENURES OF THE OHIO STATE UNIVERSITY’S ACADEMIC INTEGRITY POLICY WITH 
+RESPECT TO THIS ASSIGNMENT.
+THIS IS THE README FILE FOR LAB 3.
+
+Student name: Saeed Alneyadi.11
+
+1. Total amount of time (effort) it took for you to complete the lab: 
+ANSWER: 26 hours
+
+2. Short description of any concerns, interesting problems or discoveries encountered, or 
+comments in general about the contents of the lab: 
+ANSWER: I faced problems while using scanf() to read line after line. It result with segmentation fault.
+
+3. Describe, with 4-5 sentences, how you used gdb to find a bug in your program while 
+debugging it. Or, if you had no bugs in your program, how you used gdb to verify that 
+your program was working correctly. Include how you set breakpoints, variables 
+you printed out, what values they had, what you found that enabled you to fix the 
+bug.
+ANSWER: I used gdb to print values of variables during the program by using print and disp commands.
+It was very useful tool that helps me to find bugs in my program. In addition to that, I used it to print 
+the values before and after scanf() function. Not only these commands that I used, I used the next and step 
+commands to move from command to command and to enter functions, respectively.

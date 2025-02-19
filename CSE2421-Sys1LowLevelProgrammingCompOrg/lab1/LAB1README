@@ -1,0 +1,54 @@
+BY SUBMITTING THIS FILE TO CARMEN, I CERTIFY THAT I HAVE STRICTLY ADHERED
+TO THE TENURES OF THE OHIO STATE UNIVERSITY’S ACADEMIC INTEGRITY POLICY
+WITH RESPECT TO THIS ASSIGNMENT.
+Name: Saeed Alneyadi.11
+
+THIS IS THE README FILE FOR LAB 1.
+
+Name: 
+	
+1.	UNIX is proprietary system (i.e. you must purchase a license) while Linux is an Open Source system.  An Open Source system, however, is not always “free”. Why?  ANSWER: Depending on venders, various kinds of Unix have different cost structures.
+
+2.	Name another difference between Unix/Linux from your required reading. ANSWER: In terms of free operating systems and open source software, Linux is an example. Unix is a highly well-liked operating system in colleges, businesses, large corporations, etc.
+
+3.	What made UNIX different from all other commercially available software systems when it was initially developed? ANSWER: Unix have code recycling features. Because of this feature, Unix was able to work in different computers and give them the ability to communicate and connect to each other. This solve the issue where each computer have its own operating system.
+
+4.	What operating system covers the widest range of hardware in the world? ANSWER: Linux is the operating system that covers the widest range of hardware in the world.
+
+5.	Why was the C programming language initially created? ANSWER: The C language was especially made for creating the UNIX system.
+
+6.	What version of the mkdir command is running on stdlinux?  What mkdir option did you use to determine this? ANSWER: Version 8.22
+
+7.	What does the wc -l  instruction do?  The manual page for that instruction says prints the newline count, but what important information does that count tell you? ANSWER: It tells the number of lines of a file.
+
+8.	Describe one difference between what you observed in the C programming language code in lab1.c and either Java or C++ that you have used before.  Describe one similarity. ANSWER: One of the differences between C and Java is that Java is object-oriented programming language and it has classes. While C is not object-oriented programming language and it has no classess. Speaking about the similarties, both you have to end statements with a semicolon. Also, They uses the same command syntax “/*   */“.
+
+9.	How is white space (tabs/newlines/returns, spaces, etc.) handled within a C program file?  Do you think this “feature” of C program files is a good thing or a bad thing?  Why? ANSWER: In most part, the compiler ignore them.
+
+10.	When a line of code is printed out after the next command in gdb, that line of code has just finished executing.  True or False? ANSWER: False.
+
+11.	What is the value of getchar_return_value at GDB item #4?  Is this what you expected to see? ANSWER: 49 as an integer but in ASCII is ‘1’.
+
+12.	What is the value of maxEntries variable at GDB item #5? ANSWER: The value is one 1.
+
+13.	What were the 15 hexadecimal values in the variable getchar_return_value as it read in each successive value from input? ANSWER: 0x31 0x32 0x33 0x34 0x35 0x36 0x37 0x20 0x70 0x65 0x61 0x63 0x68 0x65 0x73
+
+14.	What is the relationship between the ASCII value of a digit and the actual value it represents? ANSWER: Each Character in ASCII have an ASCII value. So, number ’0’ have an ASCII value of 48, number ’1’ have an ASCII value of 49 and so on. Which means that you just have to add 48 to the actual value and you will get the ASCII value of the digit.
+
+
+15.	How does the output of the program change at GDB item #7 from the output seen prior? ANSWER: The new output shows that the first character of the input word is ‘@‘ while it is ‘b’. Everything other character is the same.
+
+16.	Answer the questions asked in item #10 here.
+
+	Are these values what you expected to see?  If so, why?  If not, what did you observe/learn? ANSWER: I was expecting to see that all letter inside lab1.input1 file. However, the last character ‘E’ did not appear in the output. This is because the program have also counted the newline character “\n”.
+
+17.	Describe how you created the breakpoint in your program while using ddd instead of gdb. ANSWER: You just need to right click the place that you want to set the breakpoint. Then select from the menu “Set Breakpoint”.
+
+18.	Edit the Makefile.  On the line that starts out "gcc_opt =" close to the top of the file,  put " -D DEBUG" (do not put the double quotes in the file).  Now say "touch lab1.c".  Rerun the program using 6 and banana.  Does the output change?  If so, how? ANSWER: Same message appeared but with extra line “fewer than 10 characters entered, number of characters set to 6”.
+
+19.	What do you think of the make command?  [2-3 sentences] ANSWER: It is one of the commands that saves large amount of programmer time. It runs large gcc command with the wanted flags by just typing “make -r”. It is one of the best command that makes the life easier for a C programmer.
+
+
+
+
+

@@ -1,0 +1,9 @@
+echo "files in lab directory"
+ls
+mkdir test
+cp lab1.zip test
+unzip lab1.zip -d test
+make -C test lab1
+echo "files in test directory"
+ls test
+rm -rf test

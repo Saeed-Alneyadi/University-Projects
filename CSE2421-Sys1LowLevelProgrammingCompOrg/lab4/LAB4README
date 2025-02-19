@@ -1,0 +1,25 @@
+BY SUBMITTING THIS FILE TO CARMEN, I CERTIFY THAT I STRICTLY ADHERED TO THE 
+TENURES OF THE OHIO STATE UNIVERSITY’S ACADEMIC INTEGRITY POLICY. 
+THIS IS THE README FILE FOR LAB 4.
+
+1. Student Name: Saeed Alneyadi.11
+
+2. Total amount of time (effort) it took for you to complete the lab: 
+ANSWER: 40 Hours
+
+3. Short description of any concerns, interesting problems or discoveries encountered, or 
+comments in general about the contents of the lab: 
+ANSWER: I faced so many seg fault errors.
+
+4. Describe, with 4-5 sentences, how you used gdb to find a bug in your program while 
+debugging it. Or, if you had no bugs in your program, how you used gdb to verify that 
+your program was working correctly. Include how you set breakpoints, variables you 
+printed out, what values they had, what you found that enabled you to fix the bug. . If 
+you didn’t have to use gdb to find any bugs, then use gdb to print out the value of each 
+address you received from a malloc()/calloc() call, then use a breakpoint for the free() 
+system call to verify that each addressed is passed to free at the end of the program. 
+You may use ddd instead of gdb, if you wish.
+ANSWER: The gdb was veryy helpful to me. I used to write the command make -r in the gdb intead of quiting and type it again.
+I was able to still use the gdb while it running which is very cool feature. It helped me finding so many bugs inclduing seg faults.
+
+

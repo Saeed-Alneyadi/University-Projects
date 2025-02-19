@@ -1,0 +1,27 @@
+BY SUBMITTING THIS FILE TO CARMEN, I CERTIFY THAT I HAVE STRICTLY ADHERED 
+TO THE TENURES OF THE OHIO STATE UNIVERSITY’S ACADEMIC INTEGRITY POLICY 
+WITH RESPECT TO THIS ASSIGNMENT.
+
+THIS IS THE README FILE FOR LAB 2.
+
+Student name: Saeed Alneyadi.11
+
+1. Total amount of time in hours (approximate) to complete the entire lab;
+24 hours
+
+2. Short description of any concerns, interesting problems or discoveries 
+encountered, or comments in general about the contents of the lab;
+I faced issues with scanf() inside a loop.
+
+3. Run gdb on your bit_decode1 executable. Enter data here that describes 
+the interim values you calculated as you created your 8-bit key as you 
+read in each separate digit of the 4-digit key. Specify the gdb command 
+you used to print the interim values and how the values were displayed 
+in gdb. For example, what is the value of key after you have read and 
+processed the first digit of the key, then after you have processed the 
+second digit of the key, etc. Printing the key in hexadecimal format might 
+help you determine if the value you are creating is correct.
+
+4. If you run gdb for any reason on bit_decode2, then describe why you chose 
+to do so, what you did, what you saw.
+I used the same input as the lab document.
